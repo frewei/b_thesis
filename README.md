@@ -14,3 +14,5 @@ The folder university_directory is the home folder of my account 'frewei' on the
 logs with logs, prediction
 
 Pilot test models and predictions are placed in their predictions and models folders withing the single_source_loc and multi_source_loc folders
+
+predictions van pilot tests werd gedaan in de model python script, daarvoor is de predictions file in single_source_loc
