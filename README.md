@@ -23,3 +23,15 @@ source /home/frewei/fre_env/bin/activate
 nohup python /home/frewei/multi_source_loc/NewMultiSource1_same_BS_8_LR_1e-5.py > /home/frewei/multi_source_loc/script_outputs/NewMS1_same_BS_8_LR_1e-5.out 2>&1 &
 deactivate
 ````
+
+````
+source /home/frewei/fre_env/bin/activate
+python /home/frewei/single_source_loc/SingleNamesLabelsDef.py
+deactivate
+````
+
+````
+source /home/frewei/fre_env/bin/activate
+python /home/frewei/single_source_loc/PredictMultiModel.py
+deactivate
+````
