@@ -1,6 +1,12 @@
-# b_thesis
+# Overview
+The local_directory folder contains all Jupyter Notebooks that I used to plot the predictions and other visualizations. The comp_cluster_directory is the directory I setup on the computational clusters of the Radboud University, the original path name is /home/frewei/ instead of /comp_clusters_directory/. Files that had to be plotted or visualized were moved to the local_directory using the FileZilla program. The /empty comp_clusters_directory/logs/ folder correlates to /local_directory/notebook_logs folder.
 
-necesarry packages:
+
+/comp_clusters_directory/single_source_loc/models/ and /comp_clusters_directory/multi_source_loc/models/ are empty folders, as they exceeded the maximum upload limit of github. The final models were therefore placed in the following Google Drive: 
+https://drive.google.com/drive/folders/1v9AhpLepNbx_jorwhvwbAESHQS7mYqEU?usp=drive_link
+
+# Virtual environment setup
+The following packages have to be generated on the virtual environment:
 ````pip install tensorflow
 pip install keras
 pip install tensorboard
@@ -9,9 +15,10 @@ pip install regex
 pip install numpy
 pip install matplotlib
 ````
+The virtual environment was named fre_env.
+
 # Layout folders
-The folder university_directory is the home folder of my account 'frewei' on the computational clusters of Radboud University. Files that had to be plotted or visualized were moved to the local_directory using the FileZilla program. THe following (empty) folders correlate with the university_directory folders:
-logs with logs, prediction
+The folder university_directory is the home folder of my account 'frewei' on the computational clusters of Radboud University. Files that had to be plotted or visualized were moved to the local_directory using the FileZilla program. The /empty comp_clusters_directory/logs/ folder correlates to /local_directory/notebook_logs
 
 Pilot test models and predictions are placed in their predictions and models folders withing the single_source_loc and multi_source_loc folders
 
