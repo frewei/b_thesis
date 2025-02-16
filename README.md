@@ -1,8 +1,10 @@
 # Overview
-The local_directory folder contains all Jupyter Notebooks that I used to plot the predictions and other visualizations. The comp_cluster_directory is the directory I setup on the computational clusters of the Radboud University, the original path name is /home/frewei/ instead of /comp_clusters_directory/. Files that had to be plotted or visualized were moved to the local_directory using the FileZilla program. The /empty comp_clusters_directory/logs/ folder correlates to /local_directory/notebook_logs folder.
+The local_directory folder contains all Jupyter Notebooks that I used to plot the predictions and other visualizations. The _comp_cluster_directory_ is the directory I setup on the computational clusters of the Radboud University, the original path name is _/home/frewei/_ instead of _/comp_clusters_directory/_. Files that had to be plotted or visualized were moved to the _local_directory_ using the FileZilla program. The _/empty comp_clusters_directory/logs/_ folder correlates to _/local_directory/notebook_logs folder_.
 
 
-/comp_clusters_directory/single_source_loc/models/ and /comp_clusters_directory/multi_source_loc/models/ are empty folders, as they exceeded the maximum upload limit of github. The final models were therefore placed in the following Google Drive: 
+_/comp_clusters_directory/single_source_loc/models/_ and _/comp_clusters_directory/multi_source_loc/models/_ are empty folders, as they exceeded the maximum upload limit of github. 
+
+The final models were therefore placed in the following Google Drive: 
 https://drive.google.com/drive/folders/1v9AhpLepNbx_jorwhvwbAESHQS7mYqEU?usp=drive_link
 
 # Virtual environment setup
