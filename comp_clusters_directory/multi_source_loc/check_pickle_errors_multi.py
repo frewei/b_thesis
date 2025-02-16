@@ -1,10 +1,11 @@
+# Check if there are any corrupted files in the single-source folders 
 import os
 import pickle
 import numpy as np
 
 train = np.load('/home/frewei/multi_source_loc/corrupt_name_labels_train_multi.npz')['arr_0']
 
-
+#only checking trainset as some files corrupted before the testset started generating
 print("checking trainset..")
 corrupted_files_train = []
 

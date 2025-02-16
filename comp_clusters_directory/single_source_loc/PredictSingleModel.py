@@ -1,5 +1,6 @@
+#Generate predictions of model
 import os #through files
-os.environ["CUDA_VISIBLE_DEVICES"] = "1" # GPU 1
+os.environ["CUDA_VISIBLE_DEVICES"] = "1" # GPU 1 on computational clusters
 
 import numpy as np
 import keras

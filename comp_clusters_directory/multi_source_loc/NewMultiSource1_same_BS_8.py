@@ -1,7 +1,7 @@
 #NewMS1_same_BS_8 
 
 import os #through files
-os.environ["CUDA_VISIBLE_DEVICES"] = "6" # GPU 2
+os.environ["CUDA_VISIBLE_DEVICES"] = "6" # GPU 6 on computational clusters
 
 os.environ['TF_DETERMINISTIC_OPS'] = '1' # set seed using the NVIDIA GPU documentation
 
@@ -25,19 +25,19 @@ from keras.layers import Conv2D, ReLU, BatchNormalization, MaxPooling2D, Dense, 
 from sklearn.model_selection import train_test_split
 from DataGeneratorMulti import DataGenerator
 
-
+# Array of dictionaries of the labels at their indeces
 azimuth_values = [270, 280, 290, 300, 310, 320, 330, 340, 350, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
 elevation_values= [60, 45, 30, 20, 10, 0, -10, -20, -30, -45]
 positions_dict = []
 for az in azimuth_values: 
   for el in elevation_values:
     positions_dict.append({'azimuth': az, 'elevation': el})
-      
+
+# Load training data
 X_train_val = np.load('/home/frewei/multi_source_loc/name_labels_train_multi.npz')['arr_0']
 y_train_val = np.load('/home/frewei/multi_source_loc/name_labels_train_multi.npz')['arr_1']
-# X_test = np.load('/home/frewei/multi_source_loc/name_labels_test_multi.npz')['arr_0']
-# y_test = np.load('/home/frewei/multi_source_loc/name_labels_test_multi.npz')['arr_1']
 
+# function that create array of only first labels so the arrays are only stratified over first labels
 first_label = []
 for t in y_train_val:
     first_label.append(t[0])
@@ -51,17 +51,13 @@ params_fit = {'dim': (39,8000),
           'n_classes': len(positions_dict),
           'n_channels': 2,
           'shuffle': True}
-# params_test = {'dim': (39,8000),
-#           'batch_size': 16,
-#           'n_classes': len(positions_dict),
-#           'n_channels': 2,
-#           'shuffle': False}
+
 
 
 # Generators
 training_generator = DataGenerator(X_train, y_train, **params_fit) 
 validation_generator = DataGenerator(X_val, y_val, **params_fit)
-# testing_generator = DataGenerator(X_test, y_test, **params_test)
+
 
 data_format = "channels_last" #2is before 39 and 8000
 
@@ -92,10 +88,12 @@ model = keras.Model(inputs = inputs, outputs = outputs)
 
 model.compile(optimizer = keras.optimizers.Adam(learning_rate = 0.000001), loss='binary_crossentropy', metrics=['accuracy'])
 
+# Tensorboard logs for loss and accuracy
 log_dir = "/home/frewei/logs/multi_source/" + "NewMS1_same_BS_8"
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-checkpoint_filepath = "/home/frewei/multi_source_loc/tmp/ckpt/multi_checkpoint1_bs8.model.keras"
+# final model that was used in predictions
+checkpoint_filepath = "/home/frewei/multi_source_loc/models/multi_checkpoint1_bs8.model.keras"
 model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_filepath,
     monitor='val_accuracy',
@@ -120,7 +118,7 @@ history = model.fit(x = training_generator,
 # np.savez('/home/frewei/multi_source_loc/predictions/predictions_MS1_new.npz', predictions)
 
 
-print("saving model...")
+print("saving model...")#overfitted model was saved just in case
 model.save('/home/frewei/multi_source_loc/models/model_NewMS1_same_BS_8.keras')
 
 print("end of script, you did it:)")

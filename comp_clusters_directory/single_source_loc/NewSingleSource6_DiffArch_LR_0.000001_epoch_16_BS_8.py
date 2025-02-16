@@ -34,9 +34,8 @@ for az in azimuth_values:
 X_train_val = np.load('/home/frewei/single_source_loc/name_labels_final_train_single.npz')['arr_0']
 y_train_val = np.load('/home/frewei/single_source_loc/name_labels_final_train_single.npz')['arr_1']
 
-
-
 X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val, stratify = y_train_val)
+
 
 params_fit = {'dim': (39,8000),
           'batch_size': 8,
@@ -79,7 +78,7 @@ model = keras.Model(inputs = inputs, outputs = outputs)
 
 model.compile(optimizer = keras.optimizers.Adam(learning_rate = 0.000001), loss='categorical_crossentropy', metrics=['accuracy'])
 
-# Tnesorboard logs for loss and accuracy
+# Tensorboard logs for loss and accuracy
 log_dir = "/home/frewei/logs/single_source/" + "NewSS6_DiffArch_LR_0.000001_epoch_16_BS_8"
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
