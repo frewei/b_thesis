@@ -1,19 +1,19 @@
-azimuth_values = [270, 280, 290, 300, 310, 320, 330, 340, 350, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
-elevation_values= [60, 45, 30, 20, 10, 0, -10, -20, -30, -45]
-positions_dict = []
-for az in azimuth_values:
-  for el in elevation_values:
-    positions_dict.append({'azimuth': az, 'elevation': el})
-# print(positions_dict)
-# print(len(positions_dict))
-# print(positions_dict[0]['azimuth'])
+# Run code for creating snap-shot of the files in the current single-source folders
 
 import numpy as np
 import os #through files
 import re #regex
 from sklearn.model_selection import train_test_split
 
-#code for loading all labels and file names for the generator
+# Array of dictionaries of the labels at their indeces
+azimuth_values = [270, 280, 290, 300, 310, 320, 330, 340, 350, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+elevation_values= [60, 45, 30, 20, 10, 0, -10, -20, -30, -45]
+positions_dict = []
+for az in azimuth_values:
+  for el in elevation_values:
+    positions_dict.append({'azimuth': az, 'elevation': el})
+
+
 def labels_names_to_list_multi(folders, positions_dict, step):
     file_names = []
     labels = []
@@ -26,6 +26,7 @@ def labels_names_to_list_multi(folders, positions_dict, step):
       #print("total files for ",folder ," ...with length ", len(file_names))
 
     for file_name in file_names:
+        #regex to find the azimuth and elevation values
         az_match = re.search(r'Az_([-\d]{3})', file_name)
         el_match = re.search(r'El_([-\d]{3})', file_name)
         
@@ -35,6 +36,7 @@ def labels_names_to_list_multi(folders, positions_dict, step):
         file_index = positions_dict.index({'azimuth': az_value, 'elevation': el_value})
         labels.append(file_index)
 
+    #create npz files for the names_labels
     names = np.array(file_names)
     labels = np.array(labels)
     np.savez(f'/home/frewei/single_source_loc/name_labels_{step}.npz', names, labels)#end of function

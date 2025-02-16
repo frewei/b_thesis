@@ -1,3 +1,4 @@
+# Check if there are any corrupted files in the single-source folders 
 import os
 import pickle
 import numpy as np
@@ -34,7 +35,6 @@ for ID in train:
     except pickle.UnpicklingError:
         corrupted_files_train.append(ID)
     except Exception as e:
-        # Handle other exceptions (optional)
         print(f"Error processing file {ID}: {e}")
         corrupted_files_train.append(ID)
 if not corrupted_files_train:
