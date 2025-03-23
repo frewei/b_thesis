@@ -43,3 +43,4 @@ bad_model = keras.saving.load_model('/home/frewei/multi_source_loc/tmp/ckpt/mult
 
 predictions = bad_model.predict(testing_generator)
 np.savez('/home/frewei/final_predictions/betterEpoch_MultiSource_LR_1e-5.npz', predictions)
+
