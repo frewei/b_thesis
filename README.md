@@ -22,7 +22,7 @@ pip install matplotlib
 The virtual environment was named fre_env.
 
 # Pipeline
-(The following steps are meant for the Multi Source Models, but can be similarly implemented for the Single Source Models. The scripts are meant to run on the computational clusters Earth/Mars. Check what GPU will be used in the script before running the commands, and edit the number in the scripts.
+(The following steps are meant for phase 3 (multi-source model evaluated on multi-source data), but can be similarly implemented for phase 1 (single-source model evaluated on single-source data). The scripts are meant to run on the computational clusters Earth/Mars. Check what GPU will be used in the script before running the commands, and edit the number in the scripts.
 
 1. Create snap-shot of current files in folders
 ````
@@ -42,7 +42,19 @@ source /home/frewei/fre_env/bin/activate
 python /home/frewei/single_source_loc/PredictMultiModel.py
 deactivate
 ````
-
+To create the single-source model that should be evaluated on multi-source data (phase 2), the following commands have to be run. The keras model can only be changed if you have the correct files downloaded from the Google Drive link.
+1. Apply single-source model weights to architecture with sigmoid activation (multi-source localization)
+````
+source /home/frewei/fre_env/bin/activate
+python /home/frewei/single_source_loc/CreateSingleOnMulti.py
+deactivate
+````
+2. Predict phase 2 model
+````
+source /home/frewei/fre_env/bin/activate
+python /home/frewei/multi_source_loc/PredictSingleOnMulti.py
+deactivate
+````
 
 
 
